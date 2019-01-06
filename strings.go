@@ -1,10 +1,12 @@
 package helper
 
-import "strings"
+import (
+	"strings"
+)
 
 // 全角转半角
 func ToSemiangle(str string, num, letter, punctuation, other bool) string {
-	if strings.Trim(str, " ") == "" || (!letter && !punctuation && !other) {
+	if strings.Trim(str, " ") == "" || (!num && !letter && !punctuation && !other) {
 		return str
 	}
 
