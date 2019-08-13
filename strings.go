@@ -5,7 +5,7 @@ import (
 )
 
 // 全角转半角
-func ToSemiangle(str string, num, letter, punctuation, other bool) string {
+func ToHalfWidth(str string, num, letter, punctuation, other bool) string {
 	if strings.Trim(str, " ") == "" || (!num && !letter && !punctuation && !other) {
 		return str
 	}
@@ -144,4 +144,14 @@ func ToSemiangle(str string, num, letter, punctuation, other bool) string {
 	}
 
 	return strings.NewReplacer(replaceStrings...).Replace(str)
+}
+
+// 判断是否为空字符
+func IsEmpty(s string) bool {
+	s = strings.TrimSpace(s)
+	if len(s) == 0 {
+		return true
+	} else {
+		return false
+	}
 }
