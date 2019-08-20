@@ -17,15 +17,20 @@ func Exist(path string) bool {
 }
 
 // 判断是否为目录
-func IsDir(dir string) bool {
-	s, err := os.Stat(dir)
+func IsDir(dir string) (bool, error) {
+	fd, err := os.Stat(dir)
 	if err != nil {
-		return false
+		return false, err
 	}
-	return s.IsDir()
+	fm := fd.Mode()
+	return fm.IsDir(), nil
 }
 
 // 判断是否为文件
-func IsFile(file string) bool {
-	return !IsDir(file)
+func IsFile(filename string) bool {
+	_, err := os.Stat(filename)
+	if err != nil && os.IsNotExist(err) {
+		return false
+	}
+	return true
 }
